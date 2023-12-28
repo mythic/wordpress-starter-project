@@ -1,0 +1,9 @@
+name: wordpress-starter-project
+recipe: wordpress
+config:
+  webroot: .
+  php: 8.1
+tooling:
+  phpcs:
+    service: appserver
+    cmd: /app/vendor/bin/phpcs

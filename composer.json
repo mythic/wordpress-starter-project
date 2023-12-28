@@ -1,0 +1,51 @@
+{
+  "name": "mythic/wordpress-starter-project",
+  "description": "A WordPress Starter Project.",
+  "keywords": [
+    "wordpress",
+    "blog",
+    "cms",
+    "lando"
+  ],
+  "type": "wordpress-core",
+  "homepage": "https://github.com/mythic/wordpress-starter-project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Mythic Digital",
+      "homepage": "https://mythicdigital.io/"
+    }
+  ],
+  "repositories":[
+    {
+      "type":"composer",
+      "url":"https://wpackagist.org"
+    }
+  ],
+  "require": {
+    "php": "^8.1",
+    "ext-json": "*",
+    "squizlabs/php_codesniffer": "^3.8",
+    "johnpbloch/wordpress": "^6.4"
+  },
+  "require-dev": {
+    "wp-coding-standards/wpcs": "^3.0"
+  },
+  "provide": {
+    "wordpress/core-implementation": "6.4.2"
+  },
+  "extra": {
+    "wordpress-install-dir": "./",
+    "installer-paths": {
+      "wp-content/mu-plugins/{$name}": [
+        "type:wordpress-muplugin"
+      ],
+      "wp-content/plugins/{$name}": [
+        "type:wordpress-plugin"
+      ],
+      "wp-content/themes/{$name}": [
+        "type:wordpress-theme"
+      ]
+    }
+  }
+}
