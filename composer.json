@@ -16,11 +16,31 @@
       "homepage": "https://mythicdigital.io/"
     }
   ],
-  "repositories":[
-    {
-      "type":"composer",
-      "url":"https://wpackagist.org"
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "johnpbloch/wordpress-core-installer": true
     }
+  },
+  "autoload": {
+    "psr-4": {
+      "MythicDigital\\ComposerScripts\\": "bin/composer-scripts/"
+    }
+  },
+  "scripts": {
+      "post-install-cmd": [
+          "MythicDigital\\ComposerScripts\\ProjectEventHandler::postInstall"
+      ],
+      "post-create-project-cmd": [
+          "MythicDigital\\ComposerScripts\\ProjectEventHandler::postCreateProject"
+      ]
+  },
+  "repositories": [
+      {
+        "type": "composer",
+        "url": "https://wpackagist.org"
+      }
   ],
   "require": {
     "php": "^8.1",
