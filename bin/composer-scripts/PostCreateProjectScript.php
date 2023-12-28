@@ -133,6 +133,7 @@ class PostCreateProjectScript extends Script {
 		}
 
 		$files = [
+			'.lando.yml',
 			'composer.json',
 			'phpcs.xml',
 		];

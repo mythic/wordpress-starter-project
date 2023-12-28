@@ -16,7 +16,8 @@ Before getting started, there are a couple of system requirements:
 
 ## Getting started
 
-This project can be installed to your machine using Composer (**Note:** Change `wordpress-project-name` to your project's name):
+This project can be installed to your machine using Composer.   
+(**Note:** Change `destination-folder` to the install directory):
 ```
-$ composer create-project mythic/wordpress-starter-project wordpress-project-name
+$ composer create-project mythic/wordpress-starter-project destination-folder
 ```
