@@ -20,21 +20,19 @@ class PostInstallScript extends Script {
 	 * @return void
 	 */
 	public static function execute( Event $event ): void {
-		echo 'Running composer "post-install-cmd" scripts' . PHP_EOL;
+		self::setEvent( $event );
 
-		self::landoConfig( $event );
-		self::setKeySalts( $event );
+		self::landoConfig();
+		self::setKeySalts();
 	}
 
 	/**
 	 * Add Lando include to wp-config.php
 	 *
-	 * @param Event $event
-	 *
 	 * @return void
 	 */
-	public static function landoConfig( Event $event ): void {
-		$app_dir        = parent::getProjectFolder( $event );
+	public static function landoConfig(): void {
+		$app_dir        = self::getProjectFolder();
 		$wp_config_path = $app_dir . '/wp-config.php';
 
 		if ( ! file_exists( $wp_config_path ) ) {
@@ -96,12 +94,10 @@ class PostInstallScript extends Script {
 	/**
 	 * Update keys & salts.
 	 *
-	 * @param Event $event
-	 *
 	 * @return void
 	 */
-	public static function setKeySalts( Event $event ): void {
-		$app_dir        = parent::getProjectFolder( $event );
+	public static function setKeySalts(): void {
+		$app_dir        = parent::getProjectFolder();
 		$wp_config_path = $app_dir . '/wp-config.php';
 
 		if ( ! file_exists( $wp_config_path ) ) {
