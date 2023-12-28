@@ -41,6 +41,9 @@ class PostCreateProjectScript extends Script {
 
 		// Perform project string replacements
 		self::updateProjectFiles();
+
+		// Modify the description in the composer.json file.
+		self::updateComposerDescription();
 	}
 
 	/**
@@ -138,9 +141,26 @@ class PostCreateProjectScript extends Script {
 		$replace = self::$info['slug'];
 
 		foreach ( $files as $file ) {
-//			self::searchReplaceFile( $search, $replace, $file );
+			self::searchReplaceFile( $search, $replace, $file );
 		}
 
 		self::writeInfo( 'All set!' );
+	}
+
+	/**
+	 * Modify the composer.json project description
+	 *
+	 * @return void
+	 */
+	public static function updateComposerDescription() {
+		if ( empty( self::$info['name'] ) ) {
+			self::writeError( 'Missing project name.' );
+			return;
+		}
+
+		$search  = self::$event->getComposer()->getPackage()->getDescription();
+		$replace = sprintf( 'A custom WordPress project for %s by Mythic Digital', self::$info['name'] );
+
+		self::searchReplaceFile( $search, $replace, 'composer.json' );
 	}
 }
